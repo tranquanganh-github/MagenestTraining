@@ -2,9 +2,9 @@
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <type name="Magento\Checkout\Controller\Cart\Add">
-        <plugin name="magenest_addtocartsimpleproduct_plugin_before_execute"
-                type="Magenest\AddToCartSimpleProduct\Plugin\Controller\Checkout\Cart\AddPlugin"
+    <type name="Magento\Checkout\CustomerData\Cart">
+        <plugin name="magenest_addtocartsimpleproduct_plugin_after_get_section_data"
+                type="Magenest\AddToCartSimpleProduct\Plugin\CustomerData\Checkout\Cart\CartPlugin"
                 sortOrder="10"
                 disabled="false"/>
     </type>
