@@ -1,0 +1,55 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magenest\CustomerAvatar\Block\Customer\Account\Dashboard\AdditionalInformation $block */
+$customer = $block->getCustomer();
+?>
+<div class="block block-dashboard-info">
+    <div class="block-title">
+        <strong><?= $block->escapeHtml(__('Account Information Additional')) ?></strong>
+    </div>
+    <div class="block-content">
+        <div class="box box-information">
+            <strong class="box-title">
+                <span><?= $block->escapeHtml(__('Contact Information')) ?></span>
+            </strong>
+            <div class="box-content" data-bind="scope: 'customer'" data-role="customer">
+                <span class="customer-name"
+                      data-bind="text: new String('<?=
+                      $block->escapeHtml(__('Fullname : %1', '%1'))
+                      ?>').replace('%1', customer().fullname)"></span><br>
+                <span class="customer-email"
+                      data-bind="text: new String('<?=
+                      $block->escapeHtml(__('Email : %1', '%1'))
+                      ?>').replace('%1', customer().email)"></span><br>
+                <span class="customer-phone"
+                      data-bind="text: new String('<?=
+                      $block->escapeHtml(__('Phone number : %1', '%1'))
+                      ?>').replace('%1', customer().phone)"></span><br>
+                <div class="customer-image">
+                    <img data-bind="attr:{src: customer().avatar, alt: customer().fullname}"/>
+                </div>
+                <?= $block->getChildHtml('customer.account.dashboard.info.extra'); ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "customer": {
+                        "component": "Magento_Customer/js/view/customer"
+                    }
+                }
+            }
+        }
+    }
+</script>
+
+
