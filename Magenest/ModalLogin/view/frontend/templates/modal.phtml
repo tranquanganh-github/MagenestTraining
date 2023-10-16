@@ -1,0 +1,123 @@
+<?php /** @var Magenest\ModalLogin\Block\Index $block ; */ ?>
+<h1><?= $block->escapeHtml(__('Frontend Exercises')) ?></h1>
+
+<div class="container" data-mage-init='{"magenestCustomModal": {}}'>
+    <div class="modal-alert-container">
+        <div class="modal-alert-content" id="modal-alert-content">
+            <h1><?= $block->escapeHtml(__('Testing modal popup')) ?></h1>
+        </div>
+        <div class="modal-alert-action-tool">
+            <button class="ok_button" id="modal-button-alert">
+                <?= $block->escapeHtml(__('Modal Popup')) ?>
+            </button>
+        </div>
+    </div>
+    <br>
+    <div class="modal-login-container">
+        <div class="modal-login-content" id="modal-login-content">
+            <div class="block-content" aria-labelledby="block-customer-login-heading">
+                <?php if (!$block->isLogin()): ?>
+                    <form class="form form-login"
+                          action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>"
+                          method="post"
+                          id="login-form"
+                          data-mage-init='{"validation":{}}'>
+                        <?= $block->getBlockHtml('formkey') ?>
+                        <fieldset class="fieldset login"
+                                  data-hasrequired="<?= $block->escapeHtml(__('* Required Fields')) ?>">
+                            <div class="field note">
+                                <?= $block->escapeHtml(__('If you have an account, sign in with your email address.')) ?>
+                            </div>
+                            <div class="field email required">
+                                <label class="label" for="email">
+                                    <span><?= $block->escapeHtml(__('Email')) ?></span>
+                                </label>
+                                <div class="control">
+                                    <input name="login[username]"
+                                           value="<?= $block->escapeHtmlAttr($block->getUsername()) ?>"
+                                           id="email"
+                                           type="email"
+                                           class="input-text"
+                                           title="<?= $block->escapeHtmlAttr(__('Email')) ?>"
+                                           data-mage-init='{"mage/trim-input":{}}'
+                                           data-validate="{required:true, 'validate-email':true}">
+                                </div>
+                            </div>
+                            <div class="field password required">
+                                <label for="pass" class="label">
+                                    <span><?= $block->escapeHtml(__('Password')) ?></span>
+                                </label>
+                                <div class="control">
+                                    <input name="login[password]"
+                                           type="password"
+                                        <?php if ($block->isAutocompleteDisabled()): ?>
+                                            autocomplete="off"
+                                        <?php endif; ?>
+                                           class="input-text"
+                                           id="pass"
+                                           title="<?= $block->escapeHtmlAttr(__('Password')) ?>"
+                                           data-validate="{required:true}">
+                                </div>
+                            </div>
+                            <div class="field choice" data-bind="scope: 'showPassword'">
+                                <!-- ko template: getTemplate() --><!-- /ko -->
+                            </div>
+                            <?= $block->getChildHtml('form_additional_info') ?>
+                            <div class="actions-toolbar">
+                                <div class="primary">
+                                    <button type="submit" class="action login primary" name="send" id="send2">
+                                        <span><?= $block->escapeHtml(__('Sign In')) ?></span>
+                                    </button>
+                                </div>
+                                <div class="secondary">
+                                    <a class="action remind"
+                                       href="<?= $block->escapeUrl($block->getForgotPasswordUrl()) ?>">
+                                        <span><?= $block->escapeHtml(__('Forgot Your Password?')) ?></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                <?php else: ?>
+                    <div class="login-alert">
+                        <span><?= $block->escapeHtml(__('You have login!')) ?></span>
+                    </div><br>
+                    <div class="actions-toolbar">
+                        <div class="primary">
+                            <a href="<?= $block->escapeHtml($block->getSignoutActionUrl()) ?>"
+                               type="submit"
+                               class="action login primary"
+                               name="send"
+                               id="send2">
+                                <span><?= $block->escapeHtml(__('Sign Out')) ?></span>
+                            </a>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="modal-login-action-tool">
+            <button class="ok_button" id="modal-button-login">
+                <?= $block->escapeHtml(__('Login')) ?>
+            </button>
+        </div>
+    </div>
+    <?php // phpcs:ignore Magento2.Legacy.PhtmlTemplate?>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Customer/js/block-submit-on-send": {
+                    "formId": "login-form"
+                },
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "showPassword": {
+                            "component": "Magento_Customer/js/show-password",
+                            "passwordSelector": "#pass"
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</div>
