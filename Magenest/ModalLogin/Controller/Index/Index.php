@@ -1,6 +1,6 @@
 <?php
 
-namespace Magenest\Movie\Controller\Index;
+namespace Magenest\ModalLogin\Controller\Index;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
@@ -11,7 +11,7 @@ class Index extends Action
     /**
      * @var PageFactory
      */
-    protected PageFactory $resultPageFactory;
+    protected $resultPageFactory;
 
     /**
      * Constructor
