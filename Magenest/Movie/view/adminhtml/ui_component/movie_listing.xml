@@ -52,7 +52,7 @@
         </argument>
         <bookmark name="bookmarks"/>
         <columnsControls name="columns_controls"/>
-        <filters name="listing_filters" />
+        <filters name="listing_filters"/>
         <filterSearch name="fulltext"/>
         <paging name="listing_paging"/>
     </listingToolbar>
@@ -106,16 +106,11 @@
                 </item>
             </argument>
         </column>
-        <column name="rating">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string">Rating</item>
-                    <item name="sortOrder" xsi:type="number">50</item>
-                </item>
-            </argument>
+        <column name="rating" class="Magenest\Movie\Ui\Component\Listing\Column\Rating">
+            <settings>
+                <label translate="true">Movie Rating</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+            </settings>
         </column>
     </columns>
 </listing>

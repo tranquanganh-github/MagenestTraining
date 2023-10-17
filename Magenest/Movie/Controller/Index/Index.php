@@ -13,6 +13,12 @@ class Index extends Action
      */
     protected PageFactory $resultPageFactory;
 
+    /**
+     * Constructor
+     *
+     * @param Context $context
+     * @param PageFactory $resultPageFactory
+     */
     public function __construct(
         Context     $context,
         PageFactory $resultPageFactory,
@@ -21,10 +27,11 @@ class Index extends Action
         $this->resultPageFactory = $resultPageFactory;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function execute()
     {
-        $result = $this->resultPageFactory->create();
-
-        return $result;
+        return $this->resultPageFactory->create();
     }
 }

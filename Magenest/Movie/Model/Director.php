@@ -1,4 +1,8 @@
 <?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 
 namespace Magenest\Movie\Model;
 
@@ -46,5 +50,21 @@ class Director extends AbstractModel implements DirectorInterface
     public function setDirectorName(string $name)
     {
         return $this->setData(self::DIRECTOR_NAME, $name);
+    }
+
+    /**
+     * Prepare data before save
+     *
+     * @param array $data
+     *
+     * @return $this
+     */
+    public function setDataBeforeSave(array $data)
+    {
+        if (!empty($data)) {
+            $this->setDirectorName($data[self::DIRECTOR_NAME]);
+        }
+
+        return $this;
     }
 }

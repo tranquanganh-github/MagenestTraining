@@ -1,0 +1,34 @@
+<?php
+
+use Magenest\Movie\Block\Adminhtml\Reports\ModuleMagento;
+
+/** @var $block ModuleMagento */ ?>
+
+<div class="container row">
+    <div class="col-m-6">
+        <div class="module-span"><strong><?= $block->escapeHtml(__('Module')) ?></strong></div><br>
+        <?php $moduleCount = $block->getAllModuleInstall() ?>
+        <span><?= $block->escapeHtml(__('Total module install: ' . $moduleCount)) ?></span>
+    </div>
+    <div class="col-m-6">
+        <div class="magento-detail"><strong><?= $block->escapeHtml(__('Detail')) ?></strong></div>
+        <div class="table admin__table-wrapper">
+            <table class="data-table admin__table-primary">
+                <thead>
+                    <tr class="headings">
+                        <td><?= $block->escapeHtml(__('Name')) ?></td>
+                        <td><?= $block->escapeHtml(__('Count')) ?></td>
+                    </tr>
+                </thead>
+                <?php foreach ($block->getAllDataMagento() as $k => $v): ?>
+                    <tbody>
+                        <tr>
+                            <td><?= $block->escapeHtml(__($k)) ?></td>
+                            <td><?= $block->escapeHtml(__($v)) ?></td>
+                        </tr>
+                    </tbody>
+                <?php endforeach; ?>
+            </table>
+        </div>
+    </div>
+</div>
