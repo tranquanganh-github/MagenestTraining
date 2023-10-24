@@ -1,0 +1,10 @@
+<?php /** @var $block \Magenest\Blog\Block\Blog\View */
+    /** @var $blog \Magenest\Blog\Model\Blog */
+$blog = $block->getBlog(); ?>
+<h1><?= $block->escapeHtml(__($blog->getTitle())) ?></h1>
+<div>
+    <span><?= $block->escapeHtml(__($blog->getDescription())) ?></span>
+    <div>
+        <span><?=$block->escapeHtml(__($blog->getContent()))?></span>
+    </div>
+</div>
