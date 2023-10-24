@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Customer\Controller\Account\CreatePost">
+        <plugin name="magenest_custom_db_before_execute"
+                type="Magenest\CustomDB\Controller\Customer\Account\CreatePost"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+    <type name="Magento\Checkout\Block\Onepage">
+        <arguments>
+            <argument name="layoutProcessors" xsi:type="array">
+                <item name="vnRegion" xsi:type="object">Magenest\CustomDB\Block\Checkout\Checkout\LayoutProcessor</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,11 @@
+<?php
+/** @var $block \Magenest\CustomDB\Block\Checkout\VnRegion */
+/** @var $secureRenderer \Magento\Framework\View\Helper\SecureHtmlRenderer */?>
+<script></script>
+<?= /* @noEscape */
+$secureRenderer->renderTag(
+      'script',
+      [],
+      'window.vnRegion = ' . /* @noEscape */ $block->getSerializedConfig()
+    , false
+);?>
