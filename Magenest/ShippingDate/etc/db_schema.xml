@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <table name="magenest_shipping_date" resource="default" engine="innodb" comment="Magenest Shipping Date">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true"
+                comment="Shipping Date ID"/>
+        <column xsi:type="int" name="quote_id" unsigned="true" nullable="false" comment="Quote ID"/>
+        <column xsi:type="boolean" name="status" nullable="true" comment="Quote Status"/>
+        <column xsi:type="date" name="shipping_date" nullable="true" comment="Shipping Date"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="foreign"
+                    referenceId="MAGENEST_BLOG_AUTHOR_ID_ADMIN_USER_USER_ID"
+                    table="magenest_shipping_date"
+                    column="quote_id"
+                    referenceTable="quote"
+                    referenceColumn="entity_id"
+                    onDelete="CASCADE"/>
+    </table>
+</schema>

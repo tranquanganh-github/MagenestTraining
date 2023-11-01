@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magenest" translate="label" sortOrder="200">
+            <label>Magenest</label>
+        </tab>
+        <section id="magenest_background_color"
+                 translate="label"
+                 type="text"
+                 sortOrder="20"
+                 showInDefault="1"
+                 showInWebsite="1"
+                 showInStore="1">
+            <class>separator-top</class>
+            <label>Background Color</label>
+            <tab>magenest</tab>
+            <resource>Magenest_BackgroundColor::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Background Color Configuration</label>
+                <field id="select_background_color" translate="label" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Select Color</label>
+                    <frontend_model>Magenest\BackgroundColor\Block\Adminhtml\Form\Field\Group\ColorPicker</frontend_model>
+                    <backend_model>Magenest\BackgroundColor\Model\Config\Backend\ColorPicker</backend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

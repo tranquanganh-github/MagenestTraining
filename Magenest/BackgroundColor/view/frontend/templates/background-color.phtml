@@ -1,0 +1,15 @@
+<?php /** @var \Magenest\BackgroundColor\Block\Header\Link\BackgroundColor $block */ ?>
+<li class="magenest-background-color-wrapper">
+    <div class="magenest-background-color" data-mage-init='{"magenestBackgroundColor": {}}'>
+        <label for="magenest-background-color-select">
+            <?= $block->escapeHtml(__('Background Color: '))?>
+            <?php $backgroundColor = $block->getBackgroundColorConfigValue();?>
+            <select id="magenest-background-color-select">
+                <option value="default" selected><?= $block->escapeHtml(__('Default'))?></option>
+                <?php foreach ($backgroundColor as $item):?>
+                <option value="<?= $item['color_input']?>"><?= $block->escapeHtml($item['color_text'])?></option>
+                <?php endforeach;?>
+            </select>
+        </label>
+    </div>
+</li>
