@@ -1,0 +1,27 @@
+<?php /** @var $block Index */
+
+use Magenest\Banner\Block\Banner\Index;
+use Magento\Framework\Json\Helper\Data;
+
+$banner = $this->helper(Data::class)->jsonEncode($block->getBanner()); ?>
+
+<div class="magenest-banner-wrapper" data-bind="scope: 'bannerListing'" data-role="magenest-banner">
+    <div class="magenest-banner" data-bind="foreach: bannerListing()">
+        <img data-bind="attr: {src: image, alt: title}">
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "[data-role=magenest-banner]": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "bannerListing": {
+                        "component": "Magenest_Banner/js/banner",
+                        "bannerAvailable": <?= /* @noEscape */ $banner ?>
+                    }
+                }
+            }
+        }
+    }
+</script>

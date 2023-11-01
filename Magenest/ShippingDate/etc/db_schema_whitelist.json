@@ -1,0 +1,14 @@
+{
+    "magenest_shipping_date": {
+        "column": {
+            "entity_id": true,
+            "quote_id": true,
+            "status": true,
+            "shipping_date": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGENEST_SHIPPING_DATE_QUOTE_ID_QUOTE_ENTITY_ID": true
+        }
+    }
+}

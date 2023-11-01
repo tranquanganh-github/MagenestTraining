@@ -1,0 +1,69 @@
+<?php /** @var $block \Magenest\ShippingDate\Block\Catalog\Product\View\ShippingDate */ ?>
+
+<div class="field col-sm-6 ">
+    <div class="response-field-date">
+        <div class="subtemplate-wrapper">
+            <div class="row">
+                <div class="select-box">
+                    <strong>
+                        <label for="magenest-shipping-date-type">
+                            <?= $block->escapeHtml(__('Select type shipping:')) ?>
+                        </label>
+                    </strong>
+                    <br>
+                    <select name="magenest-shipping-date-type" id="magenest-shipping-date-type" class="select"
+                            style="width: 40%">
+                        <?php foreach ($block->getShippingDateOptions() as $option): ?>
+                            <option value="<?= $block->escapeHtmlAttr(__($option['value'])) ?>">
+                                <?= $block->escapeHtml(__($option['label'])) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <br>
+                <div class="input-box" id="magenest-datepicker-container" hidden="hidden">
+                    <strong>
+                        <label for="magenest-datepicker">
+                            <?= $block->escapeHtml(__('Select shipping date:')) ?>
+                        </label>
+                    </strong>
+                    <br>
+                    <input name="magenest-shipping-date" id="magenest-datepicker" title="Shipping Date" value=""
+                           type="text" style="width: 40%">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<script>
+    require([
+        "jquery",
+        "mage/calendar"
+    ], function ($) {
+        let currentDate = new Date();
+
+        $('#magenest-datepicker').datepicker({
+            showMonthAfterYear: false,
+            dateFormat: 'mm/dd/yy',
+            changeMonth: true,
+            changeYear: true,
+            minDate: currentDate,
+        });
+
+        function onSelectChange(event) {
+            var value = $(event.target).val();
+            if (value === "2") {
+                $('#magenest-datepicker-container').show();
+            } else {
+                $('#magenest-datepicker-container').hide();
+            }
+        }
+
+        $(document).ready(function (){
+            $("#magenest-datepicker").datepicker().datepicker("setDate", currentDate);
+        });
+        $(document).on('change', '#magenest-shipping-date-type', onSelectChange);
+    });
+</script>

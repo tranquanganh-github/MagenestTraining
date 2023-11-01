@@ -1,0 +1,17 @@
+{
+    "magenest_banner": {
+        "column": {
+            "entity_id": true,
+            "name": true,
+            "text": true,
+            "is_active": true,
+            "title": true,
+            "url_page": true,
+            "image": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGENEST_BANNER_LAYOUT_UPDATE_ID_LAYOUT_UPDATE_LAYOUT_UPDATE_ID": true
+        }
+    }
+}
