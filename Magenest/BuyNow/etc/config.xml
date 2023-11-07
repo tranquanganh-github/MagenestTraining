@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <magenest_buy_now>
+            <general>
+                <status_buy_now>0</status_buy_now>
+                <status_add_to_cart>0</status_add_to_cart>
+                <status_product_listing_price>0</status_product_listing_price>
+            </general>
+        </magenest_buy_now>
+    </default>
+</config>

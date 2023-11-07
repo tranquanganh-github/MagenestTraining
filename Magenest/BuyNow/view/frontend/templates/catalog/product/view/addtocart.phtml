@@ -1,0 +1,100 @@
+<?php
+/**
+ * @var \Magento\Catalog\Block\Product\View                    $block
+ * @var \Magento\Framework\Escaper                             $escaper
+ * @var \Magento\Framework\View\Helper\SecureHtmlRenderer      $secureRenderer
+ * @var \Magenest\BuyNow\ViewModel\Catalog\Product\ListProduct $viewModel
+ */
+$viewModel = $block->getViewModel();
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php $btnAddToCart = __('Add to Cart'); ?>
+<?php $btnBuyNow = __('Buy Now'); ?>
+<?php if ($_product->isSaleable()) : ?>
+    <div class="box-tocart">
+        <div class="fieldset">
+            <?php if ($block->shouldRenderQuantity()) : ?>
+                <div class="field qty">
+                    <label class="label" for="qty">
+                        <span><?= $escaper->escapeHtml(__('Qty')) ?></span>
+                    </label>
+                    <div class="control">
+                        <button type="button" id="qty--dec" class="decreaseQty">-</button>
+                        <input type="number"
+                               name="qty"
+                               id="qty"
+                               min="0"
+                               value="<?= $block->getProductDefaultQty() * 1 ?>"
+                               title="<?= $escaper->escapeHtmlAttr(__('Qty')) ?>"
+                               class="input-text qty"
+                               data-validate="<?= $escaper->escapeHtml(json_encode($viewModel->getQuantityValidators())) ?>"
+                        />
+                        <button type="button" id="qty-upt" class="increaseQty">+</button>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <div class="actions">
+                <div class="actions-buttons" style="display: flex;flex-direction: column;">
+                    <?php if ($viewModel->isValidAddToCartConfig()): ?>
+                        <div class="submit-add-to-cart" style="margin-bottom: 10px">
+                            <button type="submit"
+                                    title="<?= $escaper->escapeHtmlAttr($btnAddToCart) ?>"
+                                    class="action primary tocart"
+                                    id="product-addtocart-button"
+                                    value="0"
+                                    disabled>
+                                <span><?= $escaper->escapeHtml($btnAddToCart) ?></span>
+                            </button>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($viewModel->isValidBuyNowConfig()): ?>
+                        <div class="submit-buy-now">
+                            <button type="submit"
+                                    title="<?= $escaper->escapeHtmlAttr($btnBuyNow) ?>"
+                                    class="action primary tocart"
+                                    id="product-buynow-button"
+                                    value="1">
+                                <span><?= $escaper->escapeHtml($btnBuyNow) ?></span>
+                            </button>
+                        </div>
+                    <?php endif; ?>
+                </div>
+                <?= $block->getChildHtml('', true) ?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/js/validate-product": {}
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    require([
+        'jquery'
+    ], function ($) {
+        $('#qty-upt, #qty-dec').click(function () {
+            let self = $(this),
+                input = $("#qty"),
+                currentQty = input.val();
+            if (self.hasClass('increaseQty')) {
+                input.val(parseInt(currentQty) + 1);
+            } else {
+                input.val(parseInt(currentQty) - 1);
+            }
+        });
+    });
+</script>
+
+<script></script>
+<?= /* @noEscape */
+$secureRenderer->renderTag(
+    'script',
+    [],
+    'window.cartPageUrl = ' . /* @noEscape */ $viewModel->getCartPageUrl(),
+    false
+); ?>
