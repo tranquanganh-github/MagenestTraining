@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock class="Magento\Catalog\Block\Product\View"
+                        name="product.info.addtocart"
+                        template="Magenest_BuyNow::catalog/product/view/addtocart.phtml">
+            <arguments>
+                <argument name="view_model" xsi:type="object">
+                    Magenest\BuyNow\ViewModel\Catalog\Product\ListProduct
+                </argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock class="Magento\Catalog\Block\Product\View"
+                        name="product.info.addtocart.additional"
+                        template="Magenest_BuyNow::catalog/product/view/addtocart.phtml">
+            <arguments>
+                <argument name="view_model" xsi:type="object">
+                    Magenest\BuyNow\ViewModel\Catalog\Product\ListProduct
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>
